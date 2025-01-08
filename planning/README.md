@@ -56,6 +56,6 @@ Stay focused on your dreams and pursuits with this simple yet powerful bucket li
     ```
 4. Start the server:
     ```bash
-    npm start -->
+    npm start
     ```
-<!-- 5. Open the app in your browser at `http://localhost:3000`. -->
+5. Open the app in your browser at `http://localhost:3000`. -->
