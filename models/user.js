@@ -2,18 +2,6 @@ const mongoose = require('mongoose');
 
 // One-to-Many | | (One User can have Many Bucket List Items)
 
-const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
-
 const bucketListSchema = new mongoose.Schema({
   activity: {
     type: String,
@@ -22,6 +10,7 @@ const bucketListSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
+    options: ['Adventure', 'Travel', 'Career', 'Health', 'Family', 'Finance', 'Hobbies', 'Education', 'Social', 'Entertainment', 'Giving Back', 'General', 'Skills']
   },
   notes: {
     type: String,
@@ -35,5 +24,17 @@ const bucketListSchema = new mongoose.Schema({
   },
 });
 
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  backetList: [bucketListSchema],
+});
+
 module.exports = mongoose.model('User', userSchema);
-module.exports = mongoose.model('BucketList', bucketListSchema);
