@@ -1,7 +1,3 @@
-Here's how you can structure your **README** file for the `Pursuit` project:
-
----
-
 # Pursuit  
 *Manifest Your Dreams*  
 
