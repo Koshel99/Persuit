@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('../partials/_navbar.ejs') %>
+    <title>Dreams - Pursuit</title>
+  </head>
+  <body>
+    <div class="container">
+      <% if (user) { %>
+        <h1>Welcome to your Dream World, <%= user.username %>! 🌠</h1>
+        <p>Manage your dreams and goals to make them come true!</p>
+        <a href="/users/<%= user._id %>/dreams">View My Dreams</a> |
+        <a href="/users/<%= user._id %>/dreams/add">Add a New Dream</a>
+      <% } else { %>
+        <h1>Welcome to Pursuit Dreams! 🌟</h1>
+        <p>Your dreams await you. Start your journey with us today!</p>
+      <% } %>
+    </div>
+  </body>
+</html>

@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  backetList: [bucketListSchema],
+  bucketList: [bucketListSchema],
 });
 
 module.exports = mongoose.model('User', userSchema);
