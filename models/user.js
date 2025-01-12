@@ -10,7 +10,7 @@ const bucketListSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    options: ['Adventure', 'Travel', 'Career', 'Health', 'Family', 'Finance', 'Hobbies', 'Education', 'Social', 'Entertainment', 'Giving Back', 'General', 'Skills']
+    options: ['Adventure', 'Travel', 'Career', 'Health', 'Family', 'Finance', 'Hobbies', 'Education', 'Social', 'Entertainment', 'Giving Back', 'General', 'Skills','Risky']
   },
   notes: {
     type: String,

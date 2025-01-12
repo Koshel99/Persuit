@@ -9,6 +9,7 @@ require('./config/database');
 
 // Controllers
 const authController = require('./controllers/auth');
+const bucketListController = require('./controllers/dreams');
 const isSignedIn = require('./middleware/isSignedIn');
 
 const app = express();
@@ -45,6 +46,7 @@ app.use('/auth', authController);
 
 // Protected Routes
 app.use(isSignedIn);
+app.use('/dreams', bucketListController);
 
 app.get('/protected', async (req, res) => {
   if (req.session.user) {

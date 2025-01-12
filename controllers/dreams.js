@@ -1,21 +1,19 @@
 const express = require('express');
+const User = require('../models/user.js');
 const router = express.Router();
 
-const User = require('../models/user.js');
-
-const BucketList = require('./models/bucketList');
 
 // router logic will go here - will be built later on in the lab
 
 // MAIN
 
-router.get('/:userId/dreams', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
       // find the user
-      const currentUser = await User.findById(req.session.user._id);
+      const currentUser = await User.find( {userId: req.session.user._id});
   
       res.render('dreams/index.ejs', {
-        dreams: currentUser.dreams,});
+        dreams: currentUser.bucketList,});
     } catch (error) {
       console.log(error);
       res.redirect('/');
@@ -24,22 +22,23 @@ router.get('/:userId/dreams', async (req, res) => {
 
   // OPEN NEW ACTIVITY PAGE
 
-  router.get('/:userId/dreams/add', async (req, res) => {
+  router.get('/add', async (req, res) => {
     res.render('dreams/new.ejs');
 });
 
   // ADD NEW ACTIVITY
 
-router.post('/dreams', async (req, res) => {
+router.post('/dream-list', async (req, res) => {
     try {
+      console.log('Form data:', req.body);
       // find the user
       const currentUser = await User.findById(req.session.user._id);
       // add the app to the dreams array on the user object
-      currentUser.dreams.push(req.body);
+      currentUser.bucketList.push(req.body);
       // save the changes to the user record.
       await currentUser.save();
       // redirect usr to index page
-      res.redirect(`/users/${currentUser._id}/dreams`);
+      res.redirect(`/${currentUser.bucketList[currentUser.bucketList.length - 1]._id}`);
     } catch (err) {
       console.log(err);
       res.redirect('/');
