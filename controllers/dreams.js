@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
       // find the user
-      const currentUser = await User.find( {userId: req.session.user._id});
+      const currentUser = await User.find({userId: req.session.user._id});
   
       res.render('dreams/index.ejs', {
         dreams: currentUser.bucketList,});
@@ -22,72 +22,62 @@ router.get('/', async (req, res) => {
 
   // OPEN NEW ACTIVITY PAGE
 
+  // OPEN NEW ACTIVITY FORM PAGE
+
   router.get('/add', async (req, res) => {
     res.render('dreams/new.ejs');
 });
 
   // ADD NEW ACTIVITY
 
-router.post('/dream-list', async (req, res) => {
+  router.post('/dreams', async (req, res) => {
     try {
-      console.log('Form data:', req.body);
-      // find the user
+      // Find the user by session ID
       const currentUser = await User.findById(req.session.user._id);
-      // add the app to the dreams array on the user object
-      currentUser.bucketList.push(req.body);
-      // save the changes to the user record.
+      
+      // Create a new dream object and push it into the user's bucket list
+      const newDream = {
+        activity: req.body.activity,
+        category: req.body.category,
+        notes: req.body.notes,
+        photo: req.body.photo,
+        status: req.body.status || 'Not Started'
+      };
+  
+      currentUser.bucketList.push(newDream);
+      
+      // Save the changes to the user record
       await currentUser.save();
-      // redirect usr to index page
-      res.redirect(`/${currentUser.bucketList[currentUser.bucketList.length - 1]._id}`);
+      
+      // Redirect to the newly added dream's page (showing the specific dream)
+      res.redirect(`/users/${currentUser._id}/dreams`);
     } catch (err) {
       console.log(err);
       res.redirect('/');
     }
-});
+  });
 
+  router.get('/:dreamId', async (req, res) => {
+    try {
+      // Look up the user from req.session
+      const currentUser = await User.findById(req.session.user._id);
+      // Find the application by the applicationId supplied from req.params
+      const dream = currentUser.bucketList.id(req.params.dreamId);
+      // Render the show view, passing the application data in the context object
+      res.render('dreams/show.ejs', {dream});
+    } catch (error) {
+      // If any errors, log them and redirect back home
+      console.log(error);
+      res.redirect('/');
+    }
+  });
 
-router.get('/:dreamId', async (req, res) => {
-  try {
-    // Look up the user from req.session
-    const currentUser = await User.findById(req.session.user._id);
-    // Find the application by the applicationId supplied from req.params
-    const dream = currentUser.dreams.id(req.params.dreamId);
-    // Render the show view, passing the application data in the context object
-    res.render('dreams/show.ejs', {
-      dream,
-    });
-  } catch (error) {
-    // If any errors, log them and redirect back home
-    console.log(error);
-    res.redirect('/');
-  }
-});
-
- //DELETE
- router.delete('/:dreamId', async (req, res) => {
-  try {
-    // Look up the user from req.session
-    const currentUser = await User.findById(req.session.user._id);
-    // Use the Mongoose .deleteOne() method to delete
-    // an application using the id supplied from req.params
-    currentUser.dreams.id(req.params.dreamId).deleteOne();
-    // Save changes to the user
-    await currentUser.save();
-    // Redirect back to the dreans index view
-    res.redirect(`/users/${currentUser._id}/dreams`);
-  } catch (error) {
-    // If any errors, log them and redirect back home
-    console.log(error);
-    res.redirect('/');
-  }
-});
-
-//EDIT
+  //EDIT
 
 router.get('/:dreamId/edit', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    const dream = currentUser.dreams.id(req.params.dreamId);
+    const dream = currentUser.bucketList.id(req.params.dreamId);
     res.render('dreams/edit.ejs', {
       dream,
     });
@@ -97,24 +87,38 @@ router.get('/:dreamId/edit', async (req, res) => {
   }
 });
 
+// PUT/UPDATE A DREAM
 router.put('/:dreamId', async (req, res) => {
   try {
-    // Find the user from req.session
     const currentUser = await User.findById(req.session.user._id);
-    // Find the current application from the id supplied by req.params
-    const dream = currentUser.foods.id(req.params.dreamId);
-    // Use the Mongoose .set() method
-    // this method updates the current application to reflect the new form
-    // data on `req.body`
+    const dream = currentUser.bucketList.id(req.params.dreamId);
+
+    // Update the dream data
     dream.set(req.body);
-    // Save the current user
+
+    // Save the changes to the user record
     await currentUser.save();
-    // Redirect back to the show view of the current application
-    res.redirect(`/users/${currentUser._id}/dreams/${req.params.dreamId}`);
+
+    // Redirect to the updated dream's show page
+    res.redirect(`/dreams/${req.params.dreamId}`);
   } catch (error) {
     console.log(error);
     res.redirect('/');
   }
 });
+
+ //DELETE
+ router.delete('/:dreamId', async (req, res) => {
+  try {
+    const currentUser = await User.findById(req.session.user._id);
+    currentUser.bucketList.id(req.params.dreamId).remove(); // Use remove() to delete
+    await currentUser.save();
+    res.redirect('/dreams');
+  } catch (error) {
+    console.log(error);
+    res.redirect('/');
+  }
+});
+
 
 module.exports = router;
