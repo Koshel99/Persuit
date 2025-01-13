@@ -6,12 +6,11 @@ const router = express.Router();
 // router logic will go here - will be built later on in the lab
 
 // MAIN
-
+// starts with /users/<%= user._id %>/dreams
 router.get('/', async (req, res) => {
     try {
       // find the user
-      const currentUser = await User.find({userId: req.session.user._id});
-  
+      const currentUser = await User.findById(req.session.user._id);
       res.render('dreams/index.ejs', {
         dreams: currentUser.bucketList,});
     } catch (error) {
@@ -28,9 +27,9 @@ router.get('/', async (req, res) => {
     res.render('dreams/new.ejs');
 });
 
-  // ADD NEW ACTIVITY
+  // ADD NEW DREAM
 
-  router.post('/dreams', async (req, res) => {
+  router.post('/', async (req, res) => {
     try {
       // Find the user by session ID
       const currentUser = await User.findById(req.session.user._id);
@@ -49,7 +48,6 @@ router.get('/', async (req, res) => {
       // Save the changes to the user record
       await currentUser.save();
       
-      // Redirect to the newly added dream's page (showing the specific dream)
       res.redirect(`/users/${currentUser._id}/dreams`);
     } catch (err) {
       console.log(err);
@@ -76,10 +74,12 @@ router.get('/', async (req, res) => {
 
 router.get('/:dreamId/edit', async (req, res) => {
   try {
+    const categories = ['Adventure', 'Travel', 'Career', 'Health', 'Family', 'Finance', 'Hobbies', 'Education', 'Social', 'Entertainment', 'Giving Back', 'General', 'Skills','Risky']
     const currentUser = await User.findById(req.session.user._id);
     const dream = currentUser.bucketList.id(req.params.dreamId);
     res.render('dreams/edit.ejs', {
       dream,
+      categories
     });
   } catch (error) {
     console.log(error);
@@ -100,7 +100,7 @@ router.put('/:dreamId', async (req, res) => {
     await currentUser.save();
 
     // Redirect to the updated dream's show page
-    res.redirect(`/dreams/${req.params.dreamId}`);
+    res.redirect(`/users/${currentUser._id}/dreams/${dream._id}`);
   } catch (error) {
     console.log(error);
     res.redirect('/');
@@ -111,9 +111,9 @@ router.put('/:dreamId', async (req, res) => {
  router.delete('/:dreamId', async (req, res) => {
   try {
     const currentUser = await User.findById(req.session.user._id);
-    currentUser.bucketList.id(req.params.dreamId).remove(); // Use remove() to delete
+    currentUser.bucketList.id(req.params.dreamId).deleteOne();
     await currentUser.save();
-    res.redirect('/dreams');
+    res.redirect(`/users/${currentUser._id}/dreams`);
   } catch (error) {
     console.log(error);
     res.redirect('/');

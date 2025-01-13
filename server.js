@@ -46,7 +46,7 @@ app.use('/auth', authController);
 
 // Protected Routes
 app.use(isSignedIn);
-app.use('/dreams', bucketListController);
+app.use('/users/:userId/dreams', bucketListController);
 
 app.get('/protected', async (req, res) => {
   if (req.session.user) {

@@ -17,8 +17,14 @@
       <img src="<%= dream.photo %>" alt="Dream photo" style="width: 200px;">
     <% } %>
 
-    <a href="/dreams/<%= dream._id %>/edit">Edit Dream</a>
-    <a href="/dreams">Back to Dreams</a>
+    <a href="/users/<%= user._id %>/dreams/<%= dream._id %>/edit">Edit Dream</a>
+      <form
+      action="/users/<%= user._id %>/dreams/<%= dream._id %>?_method=DELETE"
+      method="POST"
+      >
+        <button type="submit">Delete Dream</button>
+      </form>
+    <a href="/users/<%= user._id %>/dreams/">Back to Dreams</a>
   </div>
 </body>
 </html>

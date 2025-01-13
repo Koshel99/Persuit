@@ -9,7 +9,7 @@
 <body>
   <div class="container">
     <h1>Edit Dream</h1>
-    <form action="/dreams/<%= dream._id %>?_method=PUT" method="POST">
+    <form action="/users/<%= user._id %>/dreams/<%= dream._id %>?_method=PUT" method="POST">
       
       <!-- Activity -->
       <div>
@@ -22,7 +22,7 @@
         <label for="category">Category</label>
         <select id="category" name="category" required>
           <% categories.forEach(function(category) { %>
-            <option value="<%= category %>" <%= category === dream.category ? 'selected' : '' %>><%= category %></option>
+            <option value="<%= category %>" <%= dream.category %>><%= category %></option>
           <% }); %>
         </select>
       </div>
