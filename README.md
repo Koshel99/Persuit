@@ -74,5 +74,4 @@ Stay focused on your dreams and pursuits with this simple yet powerful bucket li
 ---
 
 ### Screenshot  
-![Pursuit App Screenshot]('/screenshot.png')
-*(Add your screenshot path above)*
+![Pursuit App Screenshot]('/public/screenshot.png') 
