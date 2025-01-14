@@ -5,10 +5,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <%- include('./partials/_navbar.ejs') %>
     <title>Home - Pursuit</title>
   </head>
-  <body>
+  <body class="home-page">
     <div class="container">
       <% if (user) { %>
         <h1>Welcome, <%= user.username %>! 🎉</h1>

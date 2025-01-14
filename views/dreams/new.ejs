@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
   <%- include('../partials/_navbar.ejs') %>
   <title>Create a New Dream</title>
 </head>
-<body>
-  <div class="container">
+<body class="dream-new">
+  <div class="container-new">
     <h1>Create a New Dream</h1>
-    <form action="/users/<%= user._id %>/dreams" method="POST">
+    <form class= "form-new" action="/users/<%= user._id %>/dreams" method="POST">
       
       <!-- Activity -->
       <div>

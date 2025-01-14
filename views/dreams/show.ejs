@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
   <%- include('../partials/_navbar.ejs') %>
   <title>Dream Details</title>
 </head>
-<body>
-  <div class="container">
+<body class="main-dreams">
+  <div class="container-dreams">
     <h1>Dream: <%= dream.activity %></h1>
 
     <p><strong>Category:</strong> <%= dream.category %></p>

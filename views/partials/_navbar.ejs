@@ -1,4 +1,7 @@
-<nav>
+<link rel="stylesheet" href="/stylesheets/partials.css" />
+<nav class="navbar">
+<div class="logo">Pursuit</div>
+<div class="menu">
     <a href="/">Home</a>
     <% if(user) { %>
     <a href="/users/<%= user._id %>/dreams">View My Bucket List</a>
@@ -8,4 +11,17 @@
     <a href="/auth/sign-in">Sign In</a>
     <a href="/auth/sign-up">Sign Up</a>
     <% } %>
+</div>
+<div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 </nav>
+
+<script>
+    function toggleMenu() {
+        const menu = document.querySelector('.navbar .menu');
+        menu.classList.toggle('active');
+    }
+</script>
