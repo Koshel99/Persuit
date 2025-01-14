@@ -2,7 +2,7 @@
 
 /* General Page Styling */
 body.home-page {
-    background-image: url('/mainBackground1.png');
+    background-image: url('/mainBackground.jpg');
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
