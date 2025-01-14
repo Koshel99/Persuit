@@ -74,4 +74,5 @@ Stay focused on your dreams and pursuits with this simple yet powerful bucket li
 ---
 
 ### Screenshot  
-![Pursuit App Screenshot]('https://raw.githubusercontent.com/Koshel99/Pursuit/main/public/screenshot.png')
+![Pursuit App Screenshot](https://raw.githubusercontent.com/Koshel99/Pursuit/main/public/screenshot.png)
+
