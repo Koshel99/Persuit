@@ -1,97 +1,78 @@
-# MEN Stack Starter Template with Session Authentication
+# Pursuit  
+*Manifest Your Dreams*  
 
-Welcome to the MEN Stack Starter Template! This template provides a foundational setup for building web applications using MongoDB, Express.js, and Node.js, complete with session authentication. This is ideal for students looking to kickstart their development projects.
+---
 
-## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Clone the Repository](#clone-the-repository)
-- [Installation](#installation)
-- [Environment Setup](#environment-setup)
-- [Running the Application](#running-the-application)
-- [Removing Git and Creating Your Own Repo](#removing-git-and-creating-your-own-repo)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
+## Description  
+Stay focused on your dreams and pursuits with this simple yet powerful bucket list app. Organize, track, and share your life’s goals with ease.  
 
-## Prerequisites
+---
 
-Before you begin, ensure you have the following installed on your machine:
-- [Node.js](https://nodejs.org/) (LTS or later)
-- [MongoDB](https://www.mongodb.com/) (make sure it's running)
-- [Git](https://git-scm.com/) (for cloning the repository)
+## Planning Process
 
-## Clone the Repository
+### Main Plan  
 
-To clone this repository, open your terminal and run:
+- **As a User (AAU)**, I want to sign up for an account and sign in, so that I can access my personal user profile and manage my bucket list activities.  
+- **AAU**, I want an easy and consistent way to navigate through the site, whether I am signed in or not. I need to quickly access options to sign up, sign in, view my list, or sign out, depending on my current status.  
+- **AAU**, I need a dedicated page to view all activities in my list, so that I can easily manage, review, and track my bucket list items.  
+- **AAU**, I want to easily find and click on an ‘Add New Activity’ link, which takes me to a form to add new activities to my list, including title, description, category, and optional photo.  
+- **AAU**, after filling out the activity form, I want to submit it and receive confirmation that the item has been saved to my bucket list, with the correct status.  
+- **AAU**, I need the ability to edit and delete items in my bucket list, so I have full control over managing and updating my stored activities.  
+- **AAU**, I want to choose if my activity is in progress or has been completed, so that I can track my progress or mark it as finished.  
+- **AAU**, I want to organize my bucket list into categories, such as travel, personal goals, or hobbies, to keep it structured and easy to navigate.  
+- **AAU**, I want to be able to add a note or personal experience after completing an activity, so I can reflect on my journey and share my thoughts once the activity is finished.  
+- **AAU**, I want the ability to upload a photo, once an activity is completed, to visually document my accomplishments.  
 
-```bash
-git clone https://github.com/SEB-1-Bahrain/instructor-men-auth.git men-stack-starter-template
-```
+---
 
-## Installation
-Navigate into the cloned directory:
-```bash
-cd men-stack-starter-template
-```
+### Advanced Plan (Future Updates)  
 
-Then, install the necessary dependencies:
+- **AAU**, I want a "Washlist" feature that rewards me for completing an activity, marking it as "washed," and unlocking fun effects like badges or points for achieving milestones.  
+- **AAU**, I want a shuffle feature that suggests the next activity for me to pursue, helping me pick my next goal when I'm unsure of what to tackle next.  
+- **AAU**, I want to share my accomplishment to social media, to encourage others to pursue their dreams.  
 
-```bash
-npm i
-```
+---
 
-## Environment Setup
-```plaintext
-MONGODB_URI=atlas_db_uri
-SESSION_SECRET=your_secret_key
-SALT_ROUNDS=10
-```
-Replace `atlas_db_uri` with your desired database name and `your_secret_key` with a secure key.
+### Technologies Used  
 
-## Removing Git and Creating Your Own Repo
-To remove the existing Git history and create your own repository:
+- **Frontend**: HTML, CSS, JavaScript  
+- **Backend**: Node.js, Express  
+- **Database**: MongoDB  
+- **Authentication**: Passport.js, bcrypt for password hashing  
+- **Session Management**: express-session with MongoDB session store  
+- **Environment Variables**: dotenv for managing secrets and environment-specific settings  
 
-1. Remove the existing .git folder:
-  ```bash
-  rm -rf .git
-  ```
-2. Initialize a new Git repository:
-  ```bash
-  git init
-  ```
-3. Add all files to the new repository:
-  ```bash
-  git add .
-  ```
-4. Commit the changes
-   ```bash
-   git commit -m "Initial commit"
-   ``` 
-5. Create a new repository on GitHub (or any other platform) and follow the instructions to push your local repository.
-  Make a new repository on [GitHub](https://github.com/) named `<your-project-name>`
-  Now link your local project to your remote GitHub repo:
-  ```bash
-  git remote add origin https://github.com/<github-username>/men-stack-relating-data-lab-cookbook.git
-  git push origin main
-  ```
+---
 
-> 🚨 Do not copy the above command. It will not work. Your GitHub username will replace `<github-username>` (including the `<` and `>`) in the URL above.
+### Setup  
 
-## Running the application
-```bash
-npm run dev
-```
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/Koshel99/Pursuit.git
+    ```
+2. Navigate into the project directory:
+    ```bash
+    cd Pursuit
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+4. Create a `.env` file in the root of the project with the following configuration:
+    ```
+    SESSION_SECRET=<your-secret-key>
+    MONGODB_URI=<your-mongodb-connection-string>
+    PORT=3000
+    ```
+5. Start the server:
+    ```bash
+    npm start
+    ```
+6. Open the app in your browser at `http://localhost:3000`.  
+7. Enjoy using the Pursuit app to track and manage your dreams!  
 
-## Features
-- User registration and login with session management
-- Basic CRUD operations
-- Modular file structure
-- Example routes and controllers
-- Basic user model setup
-- Middleware for templates and authorization
-- Basic authentication flow
+---
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Happy Coding!
+### Screenshot  
+![Pursuit App Screenshot]('/screenshot.png')
+*(Add your screenshot path above)*
